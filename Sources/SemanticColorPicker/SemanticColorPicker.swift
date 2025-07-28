@@ -29,7 +29,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     @State private var isPresented: Bool = false
 
     /// The content and behavior of the view.
-    @MainActor public var body: some View {
+    public var body: some View {
         LabeledContent {
             self.selectedOption
         } label: {

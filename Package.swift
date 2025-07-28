@@ -4,6 +4,7 @@ import PackageDescription
 
 let package: Package = Package(
     name: "SemanticColorPicker",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v14),
         .iOS(.v17),
@@ -17,6 +18,7 @@ let package: Package = Package(
     targets: [
         .target(
             name: "SemanticColorPicker",
+            resources: [.process("Resources")],
         ),
         .testTarget(
             name: "SemanticColorPickerTests",
