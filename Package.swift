@@ -22,5 +22,6 @@ let package: Package = Package(
             name: "SemanticColorPickerTests",
             dependencies: ["SemanticColorPicker"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
