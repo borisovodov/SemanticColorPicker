@@ -5,7 +5,7 @@ import SwiftUI
 /// This enum provides a comprehensive set of standard colors and their opacity variants (75%, 50%, and 25%).
 /// Each case is identifiable, equatable, and convertible to a SwiftUI `Color`, furnishing a localized description for display.
 /// Use this enum as the data source for `SemanticColorPicker` to present a predefined palette of semantic colors.
-public enum SemanticColor: String, CaseIterable, Identifiable, ColorConvertible {
+public enum SemanticColor: String, CaseIterable, ColorConvertible {
     case red
     case orange
     case yellow
@@ -54,9 +54,6 @@ public enum SemanticColor: String, CaseIterable, Identifiable, ColorConvertible 
     case purple25
     case pink25
     case brown25
-
-    /// The unique identifier for this color, fulfilling `Identifiable`.
-    public var id: Self { self }
 
     /// A localized text description for the color, suitable for accessibility and display.
     /// 

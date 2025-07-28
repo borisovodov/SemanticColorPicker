@@ -1,6 +1,6 @@
 # Code of Conduct
 
-All participants in TreePicker are expected to:
+All participants in SemanticColorPicker are expected to:
 
 - Be respectful and considerate.
 - Use inclusive language.
