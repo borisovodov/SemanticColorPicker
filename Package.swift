@@ -18,7 +18,6 @@ let package: Package = Package(
     targets: [
         .target(
             name: "SemanticColorPicker",
-            resources: [.process("Resources")],
         ),
         .testTarget(
             name: "SemanticColorPickerTests",

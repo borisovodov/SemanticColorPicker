@@ -7,7 +7,7 @@ A SwiftUI component that lets you select semantic color tokens—custom identifi
 [![Swift versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fborisovodov%2FSemanticColorPicker%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/borisovodov/SemanticColorPicker)
 [![Available platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fborisovodov%2FSemanticColorPicker%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/borisovodov/SemanticColorPicker)
 
-![SemanticColorPicker example](Sources/SemanticColorPicker/Resources/SCP.gif)
+![SemanticColorPicker example](Resources/SCP.gif)
 
 ## Overview
 
