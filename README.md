@@ -53,14 +53,19 @@ Or with a custom data type:
 
 ```swift
 struct Tag: Identifiable, ColorConvertible {
-    let id: UUID
+    let id: UUID = UUID()
     let color: Color
-    var description: String { "Tag Color" }
+    let description: String
 }
 
-struct TagPickerView: View {
-    let tags: [Tag] = []
-    @State private var selectedTag: Tag
+let tags: [Tag] = [
+    .init(color: Color.red, description: "Red"),
+    .init(color: Color.blue, description: "Blue"),
+    .init(color: Color.green, description: "Green")
+]
+
+struct ContentView: View {
+    @State private var selectedTag: Tag = tags[0]
 
     var body: some View {
         SemanticColorPicker(data: tags, selection: $selectedTag) {
