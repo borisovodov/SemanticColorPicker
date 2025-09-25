@@ -86,77 +86,77 @@ public enum SemanticColor: String, Sendable, CaseIterable, Identifiable, ColorCo
         case .brown:
             return String(localized: "brownColorSelection")
         case .red75:
-            return String(localized: "redColorSelection")
+            return String(localized: "redColorSelection75")
         case .orange75:
-            return String(localized: "orangeColorSelection")
+            return String(localized: "orangeColorSelection75")
         case .yellow75:
-            return String(localized: "yellowColorSelection")
+            return String(localized: "yellowColorSelection75")
         case .green75:
-            return String(localized: "greenColorSelection")
+            return String(localized: "greenColorSelection75")
         case .mint75:
-            return String(localized: "mintColorSelection")
+            return String(localized: "mintColorSelection75")
         case .teal75:
-            return String(localized: "tealColorSelection")
+            return String(localized: "tealColorSelection75")
         case .cyan75:
-            return String(localized: "cyanColorSelection")
+            return String(localized: "cyanColorSelection75")
         case .blue75:
-            return String(localized: "blueColorSelection")
+            return String(localized: "blueColorSelection75")
         case .indigo75:
-            return String(localized: "indigoColorSelection")
+            return String(localized: "indigoColorSelection75")
         case .purple75:
-            return String(localized: "purpleColorSelection")
+            return String(localized: "purpleColorSelection75")
         case .pink75:
-            return String(localized: "pinkColorSelection")
+            return String(localized: "pinkColorSelection75")
         case .brown75:
-            return String(localized: "brownColorSelection")
+            return String(localized: "brownColorSelection75")
         case .red50:
-            return String(localized: "redColorSelection")
+            return String(localized: "redColorSelection50")
         case .orange50:
-            return String(localized: "orangeColorSelection")
+            return String(localized: "orangeColorSelection50")
         case .yellow50:
-            return String(localized: "yellowColorSelection")
+            return String(localized: "yellowColorSelection50")
         case .green50:
-            return String(localized: "greenColorSelection")
+            return String(localized: "greenColorSelection50")
         case .mint50:
-            return String(localized: "mintColorSelection")
+            return String(localized: "mintColorSelection50")
         case .teal50:
-            return String(localized: "tealColorSelection")
+            return String(localized: "tealColorSelection50")
         case .cyan50:
-            return String(localized: "cyanColorSelection")
+            return String(localized: "cyanColorSelection50")
         case .blue50:
-            return String(localized: "blueColorSelection")
+            return String(localized: "blueColorSelection50")
         case .indigo50:
-            return String(localized: "indigoColorSelection")
+            return String(localized: "indigoColorSelection50")
         case .purple50:
-            return String(localized: "purpleColorSelection")
+            return String(localized: "purpleColorSelection50")
         case .pink50:
-            return String(localized: "pinkColorSelection")
+            return String(localized: "pinkColorSelection50")
         case .brown50:
-            return String(localized: "brownColorSelection")
+            return String(localized: "brownColorSelection50")
         case .red25:
-            return String(localized: "redColorSelection")
+            return String(localized: "redColorSelection25")
         case .orange25:
-            return String(localized: "orangeColorSelection")
+            return String(localized: "orangeColorSelection25")
         case .yellow25:
-            return String(localized: "yellowColorSelection")
+            return String(localized: "yellowColorSelection25")
         case .green25:
-            return String(localized: "greenColorSelection")
+            return String(localized: "greenColorSelection25")
         case .mint25:
-            return String(localized: "mintColorSelection")
+            return String(localized: "mintColorSelection25")
         case .teal25:
-            return String(localized: "tealColorSelection")
+            return String(localized: "tealColorSelection25")
         case .cyan25:
-            return String(localized: "cyanColorSelection")
+            return String(localized: "cyanColorSelection25")
         case .blue25:
-            return String(localized: "blueColorSelection")
+            return String(localized: "blueColorSelection25")
         case .indigo25:
-            return String(localized: "indigoColorSelection")
+            return String(localized: "indigoColorSelection25")
         case .purple25:
-            return String(localized: "purpleColorSelection")
+            return String(localized: "purpleColorSelection25")
         case .pink25:
-            return String(localized: "pinkColorSelection")
+            return String(localized: "pinkColorSelection25")
         case .brown25:
-            return String(localized: "brownColorSelection")
+            return String(localized: "brownColorSelection25")
         }
     }
 
