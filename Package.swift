@@ -18,6 +18,7 @@ let package: Package = Package(
     targets: [
         .target(
             name: "SemanticColorPicker",
+            resources: [.process("Localizable.xcstrings")]
         ),
         .testTarget(
             name: "SemanticColorPickerTests",
