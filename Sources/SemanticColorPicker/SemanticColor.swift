@@ -162,7 +162,7 @@ public enum SemanticColor: String, Sendable, CaseIterable, Identifiable, ColorCo
 
     /// Returns a random `SemanticColor` value from the primary palette.
     public static var random: Self {
-        let randomInt: Int = Int.random(in: 0..<12)
+        let randomInt: Int = Int.random(in: 0..<48)
         switch randomInt {
         case 0:
             return Self.blue
@@ -188,6 +188,78 @@ public enum SemanticColor: String, Sendable, CaseIterable, Identifiable, ColorCo
             return Self.teal
         case 11:
             return Self.yellow
+        case 12:
+            return Self.blue75
+        case 13:
+            return Self.brown75
+        case 14:
+            return Self.cyan75
+        case 15:
+            return Self.green75
+        case 16:
+            return Self.indigo75
+        case 17:
+            return Self.mint75
+        case 18:
+            return Self.orange75
+        case 19:
+            return Self.pink75
+        case 20:
+            return Self.purple75
+        case 21:
+            return Self.red75
+        case 22:
+            return Self.teal75
+        case 23:
+            return Self.yellow75
+        case 24:
+            return Self.blue50
+        case 25:
+            return Self.brown50
+        case 26:
+            return Self.cyan50
+        case 27:
+            return Self.green50
+        case 28:
+            return Self.indigo50
+        case 29:
+            return Self.mint50
+        case 30:
+            return Self.orange50
+        case 31:
+            return Self.pink50
+        case 32:
+            return Self.purple50
+        case 33:
+            return Self.red50
+        case 34:
+            return Self.teal50
+        case 35:
+            return Self.yellow50
+        case 36:
+            return Self.blue25
+        case 37:
+            return Self.brown25
+        case 38:
+            return Self.cyan25
+        case 39:
+            return Self.green25
+        case 40:
+            return Self.indigo25
+        case 41:
+            return Self.mint25
+        case 42:
+            return Self.orange25
+        case 43:
+            return Self.pink25
+        case 44:
+            return Self.purple25
+        case 45:
+            return Self.red25
+        case 46:
+            return Self.teal25
+        case 47:
+            return Self.yellow25
         default:
             return Self.yellow
         }
