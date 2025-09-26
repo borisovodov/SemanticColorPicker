@@ -4,7 +4,7 @@ import Testing
 
 @Suite struct SemanticColorTests {
     @Test func describe() async throws {
-        #expect(String(describing: SemanticColor.red) == String(localized: "redColorSelection"))
+        #expect(String(describing: SemanticColor.red) == String(localized: "redColorSelection", bundle: .module))
     }
     
     @Test func random() async throws {

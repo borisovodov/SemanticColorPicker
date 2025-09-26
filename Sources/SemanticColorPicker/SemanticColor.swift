@@ -62,101 +62,101 @@ public enum SemanticColor: String, Sendable, CaseIterable, Identifiable, ColorCo
     public var description: String {
         switch self {
         case .red:
-            return String(localized: "redColorSelection")
+            return String(localized: "redColorSelection", bundle: .module)
         case .orange:
-            return String(localized: "orangeColorSelection")
+            return String(localized: "orangeColorSelection", bundle: .module)
         case .yellow:
-            return String(localized: "yellowColorSelection")
+            return String(localized: "yellowColorSelection", bundle: .module)
         case .green:
-            return String(localized: "greenColorSelection")
+            return String(localized: "greenColorSelection", bundle: .module)
         case .mint:
-            return String(localized: "mintColorSelection")
+            return String(localized: "mintColorSelection", bundle: .module)
         case .teal:
-            return String(localized: "tealColorSelection")
+            return String(localized: "tealColorSelection", bundle: .module)
         case .cyan:
-            return String(localized: "cyanColorSelection")
+            return String(localized: "cyanColorSelection", bundle: .module)
         case .blue:
-            return String(localized: "blueColorSelection")
+            return String(localized: "blueColorSelection", bundle: .module)
         case .indigo:
-            return String(localized: "indigoColorSelection")
+            return String(localized: "indigoColorSelection", bundle: .module)
         case .purple:
-            return String(localized: "purpleColorSelection")
+            return String(localized: "purpleColorSelection", bundle: .module)
         case .pink:
-            return String(localized: "pinkColorSelection")
+            return String(localized: "pinkColorSelection", bundle: .module)
         case .brown:
-            return String(localized: "brownColorSelection")
+            return String(localized: "brownColorSelection", bundle: .module)
         case .red75:
-            return String(localized: "redColorSelection75")
+            return String(localized: "redColorSelection75", bundle: .module)
         case .orange75:
-            return String(localized: "orangeColorSelection75")
+            return String(localized: "orangeColorSelection75", bundle: .module)
         case .yellow75:
-            return String(localized: "yellowColorSelection75")
+            return String(localized: "yellowColorSelection75", bundle: .module)
         case .green75:
-            return String(localized: "greenColorSelection75")
+            return String(localized: "greenColorSelection75", bundle: .module)
         case .mint75:
-            return String(localized: "mintColorSelection75")
+            return String(localized: "mintColorSelection75", bundle: .module)
         case .teal75:
-            return String(localized: "tealColorSelection75")
+            return String(localized: "tealColorSelection75", bundle: .module)
         case .cyan75:
-            return String(localized: "cyanColorSelection75")
+            return String(localized: "cyanColorSelection75", bundle: .module)
         case .blue75:
-            return String(localized: "blueColorSelection75")
+            return String(localized: "blueColorSelection75", bundle: .module)
         case .indigo75:
-            return String(localized: "indigoColorSelection75")
+            return String(localized: "indigoColorSelection75", bundle: .module)
         case .purple75:
-            return String(localized: "purpleColorSelection75")
+            return String(localized: "purpleColorSelection75", bundle: .module)
         case .pink75:
-            return String(localized: "pinkColorSelection75")
+            return String(localized: "pinkColorSelection75", bundle: .module)
         case .brown75:
-            return String(localized: "brownColorSelection75")
+            return String(localized: "brownColorSelection75", bundle: .module)
         case .red50:
-            return String(localized: "redColorSelection50")
+            return String(localized: "redColorSelection50", bundle: .module)
         case .orange50:
-            return String(localized: "orangeColorSelection50")
+            return String(localized: "orangeColorSelection50", bundle: .module)
         case .yellow50:
-            return String(localized: "yellowColorSelection50")
+            return String(localized: "yellowColorSelection50", bundle: .module)
         case .green50:
-            return String(localized: "greenColorSelection50")
+            return String(localized: "greenColorSelection50", bundle: .module)
         case .mint50:
-            return String(localized: "mintColorSelection50")
+            return String(localized: "mintColorSelection50", bundle: .module)
         case .teal50:
-            return String(localized: "tealColorSelection50")
+            return String(localized: "tealColorSelection50", bundle: .module)
         case .cyan50:
-            return String(localized: "cyanColorSelection50")
+            return String(localized: "cyanColorSelection50", bundle: .module)
         case .blue50:
-            return String(localized: "blueColorSelection50")
+            return String(localized: "blueColorSelection50", bundle: .module)
         case .indigo50:
-            return String(localized: "indigoColorSelection50")
+            return String(localized: "indigoColorSelection50", bundle: .module)
         case .purple50:
-            return String(localized: "purpleColorSelection50")
+            return String(localized: "purpleColorSelection50", bundle: .module)
         case .pink50:
-            return String(localized: "pinkColorSelection50")
+            return String(localized: "pinkColorSelection50", bundle: .module)
         case .brown50:
-            return String(localized: "brownColorSelection50")
+            return String(localized: "brownColorSelection50", bundle: .module)
         case .red25:
-            return String(localized: "redColorSelection25")
+            return String(localized: "redColorSelection25", bundle: .module)
         case .orange25:
-            return String(localized: "orangeColorSelection25")
+            return String(localized: "orangeColorSelection25", bundle: .module)
         case .yellow25:
-            return String(localized: "yellowColorSelection25")
+            return String(localized: "yellowColorSelection25", bundle: .module)
         case .green25:
-            return String(localized: "greenColorSelection25")
+            return String(localized: "greenColorSelection25", bundle: .module)
         case .mint25:
-            return String(localized: "mintColorSelection25")
+            return String(localized: "mintColorSelection25", bundle: .module)
         case .teal25:
-            return String(localized: "tealColorSelection25")
+            return String(localized: "tealColorSelection25", bundle: .module)
         case .cyan25:
-            return String(localized: "cyanColorSelection25")
+            return String(localized: "cyanColorSelection25", bundle: .module)
         case .blue25:
-            return String(localized: "blueColorSelection25")
+            return String(localized: "blueColorSelection25", bundle: .module)
         case .indigo25:
-            return String(localized: "indigoColorSelection25")
+            return String(localized: "indigoColorSelection25", bundle: .module)
         case .purple25:
-            return String(localized: "purpleColorSelection25")
+            return String(localized: "purpleColorSelection25", bundle: .module)
         case .pink25:
-            return String(localized: "pinkColorSelection25")
+            return String(localized: "pinkColorSelection25", bundle: .module)
         case .brown25:
-            return String(localized: "brownColorSelection25")
+            return String(localized: "brownColorSelection25", bundle: .module)
         }
     }
 
