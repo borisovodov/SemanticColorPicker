@@ -81,7 +81,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { self.close() }) {
-                        SwiftUI.Label("done", systemImage: "xmark.circle.fill")
+                        SwiftUI.Label("cancel", systemImage: "xmark")
                     }
                     .font(.title2)
                     .buttonStyle(.plain)
@@ -100,7 +100,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { self.close() }) {
-                        SwiftUI.Label("done", systemImage: "xmark")
+                        SwiftUI.Label("cancel", systemImage: "xmark")
                             .labelStyle(.iconOnly)
                     }
                 }
