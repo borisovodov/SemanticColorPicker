@@ -82,6 +82,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
+                    // On iOS 26 you can you `role: .close` signature.
                     Button(action: { self.close() }) {
                         Image(systemName: "xmark")
                     }
