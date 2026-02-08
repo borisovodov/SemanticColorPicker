@@ -19,7 +19,7 @@ import SwiftUI
 ///
 /// The binding provides a semantic token that you can use throughout your UI,
 /// automatically adapting its underlying `Color` in different contexts.
-@available(iOS 26.0, macOS 26.0, watchOS 26.0, *)
+@available(iOS 17.0, macOS 14.0, watchOS 11.0, *)
 public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Data: RandomAccessCollection, Data.Element: ColorConvertible, ID: Hashable {
     private var data: Data
     private var dataID: KeyPath<Data.Element, ID>
@@ -82,7 +82,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(role: .close, action: { self.close() }) {
+                    Button(action: { self.close() }) {
                         Image(systemName: "xmark")
                     }
                 }
@@ -160,7 +160,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 #endif
 }
 
-@available(iOS 26.0, macOS 26.0, watchOS 26.0, *)
+@available(iOS 17.0, macOS 14.0, watchOS 11.0, *)
 extension SemanticColorPicker where Data.Element: Identifiable, ID == Data.Element.ID {
 
     /// Initialize a semantic color picker with a custom label view.
@@ -203,7 +203,7 @@ extension SemanticColorPicker where Data.Element: Identifiable, ID == Data.Eleme
     }
 }
 
-@available(iOS 26.0, macOS 26.0, watchOS 26.0, *)
+@available(iOS 17.0, macOS 14.0, watchOS 11.0, *)
 extension SemanticColorPicker {
 
     /// Initialize a semantic color picker with an explicit identifier key path and custom label view.
@@ -249,7 +249,7 @@ extension SemanticColorPicker {
     }
 }
 
-@available(iOS 26.0, macOS 26.0, watchOS 26.0, *)
+@available(iOS 17.0, macOS 14.0, watchOS 11.0, *)
 private struct ColorCircle: View {
     private var color: any ColorConvertible
     private var size: CGFloat
