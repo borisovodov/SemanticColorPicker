@@ -77,7 +77,9 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     @ViewBuilder private var selector: some View {
 #if os(iOS)
         NavigationView {
-            self.valuesGrid
+            ScrollView {
+                self.valuesGrid
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(role: .close, action: { self.close() }) {
@@ -98,15 +100,21 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     }
 
     @ViewBuilder private var valuesGrid: some View {
-        LazyVGrid(columns: self.columns, spacing: 10) {
+#if os(iOS)
+        let size: CGFloat = 42
+#else
+        let size: CGFloat = 28
+#endif
+
+        LazyVGrid(columns: self.columns, spacing: 16) {
             ForEach(self.data, id: dataID) { storedColor in
-                ColorCircle(color: storedColor) {
+                ColorCircle(color: storedColor, size: size) {
                     self.selection.wrappedValue = storedColor
                     self.close()
                 }
                 .overlay(
                     Circle()
-                        .strokeBorder(.background, lineWidth: storedColor == self.selection.wrappedValue ? 5 : 0)
+                        .strokeBorder(.windowBackground, lineWidth: storedColor == self.selection.wrappedValue ? 5 : 0)
                         .strokeBorder(.primary, lineWidth: storedColor == self.selection.wrappedValue ? 3 : 0)
                 )
             }
@@ -124,32 +132,30 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 
 #if os(iOS)
     private let columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
     ]
 #elseif os(macOS)
     private let columns: [GridItem] = [
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
-        GridItem(.fixed(28), spacing: 5),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
+        GridItem(.fixed(28), spacing: 16),
     ]
 #elseif os(watchOS)
     private let columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 5),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
+        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
     ]
 #endif
 }
@@ -246,16 +252,18 @@ extension SemanticColorPicker {
 @available(iOS 26.0, macOS 26.0, watchOS 26.0, *)
 private struct ColorCircle: View {
     private var color: any ColorConvertible
+    private var size: CGFloat
     private var action: () -> Void
 
-    init(color: any ColorConvertible, onTap action: @escaping () -> Void) {
+    init(color: any ColorConvertible, size: CGFloat = 28, onTap action: @escaping () -> Void) {
         self.color = color
+        self.size = size
         self.action = action
     }
 
     var body: some View {
         Circle()
-            .frame(width: 28, height: 28)
+            .frame(width: self.size, height: self.size)
             .foregroundStyle(self.color.color)
             .onTapGesture { self.action() }
             .accessibilityLabel(self.color.description)
