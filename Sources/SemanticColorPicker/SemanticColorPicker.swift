@@ -29,6 +29,38 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     private var selection: Binding<Data.Element>
     private var label: Label
 
+    private let columns: [GridItem] = {
+        #if os(watchOS)
+            return Array(
+                repeating: GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16), count: 4)
+        #else
+            return Array(
+                repeating: GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16), count: 6)
+        #endif
+    }()
+
+    private let selectedCircleSize: CGFloat = {
+#if os(visionOS)
+        return 36
+#elseif os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 36
+        } else {
+            return 28
+        }
+#else
+        return 28
+#endif
+    }()
+
+    private let gridCircleSize: CGFloat = {
+#if os(macOS) || os(watchOS)
+        return 28
+#else
+        return 42
+#endif
+    }()
+
     @State private var isPresented: Bool = false
 
     /// The content and behavior of the view.
@@ -55,7 +87,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
         } label: {
             self.label
         }
-#if os(watchOS) ||  os(tvOS)
+#if os(watchOS) || os(tvOS)
         .onTapGesture {
             self.open()
         }
@@ -66,22 +98,7 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     }
 
     @ViewBuilder private var selectedOption: some View {
-        let circleSize: CGFloat = {
-#if os(macOS) || os(watchOS)
-            return 28
-#elseif os(visionOS)
-            return 36
-#else
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                return 36
-            } else {
-                return 28
-            }
-#endif
-        }()
-
-
-        ColorCircle(color: selection.wrappedValue, size: circleSize) {
+        ColorCircle(color: selection.wrappedValue, size: self.selectedCircleSize) {
             self.open()
         }
         .overlay(
@@ -109,36 +126,10 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 #endif
     }
 
-#if os(watchOS)
-    private let columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-    ]
-#else
-    private let columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-        GridItem(.adaptive(minimum: 28, maximum: 100), spacing: 16),
-    ]
-#endif
-
     @ViewBuilder private var valuesGrid: some View {
-        let circleSize: CGFloat = {
-#if os(macOS) || os(watchOS)
-            return 28
-#else
-            return 42
-#endif
-        }()
-
         LazyVGrid(columns: self.columns, spacing: 16) {
             ForEach(self.data, id: dataID) { storedColor in
-                ColorCircle(color: storedColor, size: circleSize) {
+                ColorCircle(color: storedColor, size: self.gridCircleSize) {
                     self.selection.wrappedValue = storedColor
                     self.close()
                 }
