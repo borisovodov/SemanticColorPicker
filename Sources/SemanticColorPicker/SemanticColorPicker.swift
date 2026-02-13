@@ -36,6 +36,8 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
         let arrowEdge: Edge = {
 #if os(macOS)
             return .bottom
+#elseif os(visionOS)
+            return .top
 #else
             return .trailing
 #endif
@@ -67,6 +69,8 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
         let circleSize: CGFloat = {
 #if os(macOS) || os(watchOS)
             return 28
+#elseif os(visionOS)
+            return 36
 #else
             if UIDevice.current.userInterfaceIdiom == .pad {
                 return 36
