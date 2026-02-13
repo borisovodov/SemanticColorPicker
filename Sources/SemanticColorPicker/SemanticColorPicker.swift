@@ -1,4 +1,7 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 /// A view that displays a color well for the currently selected semantic color token,
 /// and presents a grid of predefined semantic colors for selection.
@@ -30,10 +33,18 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 
     /// The content and behavior of the view.
     public var body: some View {
+        let arrowEdge: Edge = {
+#if os(macOS)
+            return .bottom
+#else
+            return .trailing
+#endif
+        }()
+
         LabeledContent {
             self.selectedOption
 #if os(macOS) || os(iOS) || os(visionOS)
-                .popover(isPresented: $isPresented) {
+                .popover(isPresented: $isPresented, arrowEdge: arrowEdge) {
                     self.selector
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
@@ -53,7 +64,20 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
     }
 
     @ViewBuilder private var selectedOption: some View {
-        ColorCircle(color: selection.wrappedValue) {
+        let circleSize: CGFloat = {
+#if os(macOS) || os(watchOS)
+            return 28
+#else
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return 36
+            } else {
+                return 28
+            }
+#endif
+        }()
+
+
+        ColorCircle(color: selection.wrappedValue, size: circleSize) {
             self.open()
         }
         .overlay(
@@ -78,7 +102,6 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
         ScrollView {
             self.valuesGrid
         }
-        .padding(.top)
 #endif
     }
 
@@ -101,15 +124,17 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 #endif
 
     @ViewBuilder private var valuesGrid: some View {
+        let circleSize: CGFloat = {
 #if os(macOS) || os(watchOS)
-        let size: CGFloat = 28
+            return 28
 #else
-        let size: CGFloat = 42
+            return 42
 #endif
+        }()
 
         LazyVGrid(columns: self.columns, spacing: 16) {
             ForEach(self.data, id: dataID) { storedColor in
-                ColorCircle(color: storedColor, size: size) {
+                ColorCircle(color: storedColor, size: circleSize) {
                     self.selection.wrappedValue = storedColor
                     self.close()
                 }
