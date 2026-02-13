@@ -61,24 +61,24 @@ public struct SemanticColorPicker<Label, Data, ID> : View where Label : View, Da
 #endif
     }()
 
+    private let arrowEdge: Edge = {
+#if os(macOS)
+        return .bottom
+#elseif os(visionOS)
+        return .top
+#else
+        return .trailing
+#endif
+    }()
+
     @State private var isPresented: Bool = false
 
     /// The content and behavior of the view.
     public var body: some View {
-        let arrowEdge: Edge = {
-#if os(macOS)
-            return .bottom
-#elseif os(visionOS)
-            return .top
-#else
-            return .trailing
-#endif
-        }()
-
         LabeledContent {
             self.selectedOption
 #if os(macOS) || os(iOS) || os(visionOS)
-                .popover(isPresented: $isPresented, arrowEdge: arrowEdge) {
+                .popover(isPresented: $isPresented, arrowEdge: self.arrowEdge) {
                     self.selector
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
