@@ -76,3 +76,53 @@ struct ContentView: View {
     }
 }
 ```
+
+### Extending `SemanticColor`
+
+If you want to combine `SemanticColor` with your own custom colors, use the `AnyColorConvertible` type-erased wrapper:
+
+```swift
+import SwiftUI
+import SemanticColorPicker
+
+// Define your custom color enum
+enum GrayColor: String, Sendable, CaseIterable, Identifiable, ColorConvertible, Codable {
+    case gray
+    case gray75
+    case gray50
+    case gray25
+    
+    var id: String { rawValue }
+    
+    var color: Color {
+        switch self {
+            case .gray: .gray
+            case .gray75: .gray.opacity(0.75)
+            case .gray50: .gray.opacity(0.5)
+            case .gray25: .gray.opacity(0.25)
+        }
+    }
+    
+    var description: String {
+        switch self {
+            case .gray: "Gray"
+            case .gray75: "Gray 75%"
+            case .gray50: "Gray 50%"
+            case .gray25: "Gray 25%"
+        }
+    }
+}
+
+// Combine SemanticColor with your custom colors
+struct ExtendedColorPickerView: View {
+    @State private var selectedColor: AnyColorConvertible = AnyColorConvertible(SemanticColor.red)
+    
+    private let allColors: [AnyColorConvertible] =
+        SemanticColor.allCases.map { AnyColorConvertible($0) } +
+        GrayColor.allCases.map { AnyColorConvertible($0) }
+    
+    var body: some View {
+        SemanticColorPicker("Color", data: allColors, selection: $selectedColor)
+    }
+}
+```
