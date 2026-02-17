@@ -131,10 +131,11 @@ public struct AnyColorConvertible: ColorConvertible, Identifiable, Hashable, Cod
             self._color = semanticColor.color
             self._id = AnyHashable(semanticColor.id)
         } else {
-            // Fallback: cannot reconstruct the original color, use clear color
-            self._color = Color.clear
-            let idString = try container.decode(String.self, forKey: .id)
-            self._id = AnyHashable(idString)
+            throw DecodingError.dataCorruptedError(
+                forKey: .rawValue,
+                in: container,
+                debugDescription: "Unable to decode AnyColorConvertible: unsupported or missing rawValue."
+            )
         }
     }
     

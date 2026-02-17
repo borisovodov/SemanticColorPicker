@@ -106,6 +106,7 @@ import Testing
         
         #expect(decoded.description == original.description)
         #expect(decoded.rawValue == original.rawValue)
+        #expect(decoded.color == .clear)
     }
     
     @Test func initWithExplicitId() {
