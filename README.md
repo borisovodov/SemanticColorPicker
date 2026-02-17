@@ -10,7 +10,7 @@ A SwiftUI component that lets you select semantic color tokens—custom identifi
 
 ## Overview
 
-`SemanticColorPicker` is a SwiftUI control that displays a color well for a selected semantic color token and provides a grid-based selector for choosing from a predefined set of tokens. Unlike SwiftUI’s native `ColorPicker`, this package binds to types conforming to `ColorConvertible`, enabling theme-aware, environment-adaptive colors across iOS, macOS, and watchOS.
+`SemanticColorPicker` is a SwiftUI control that displays a color well for a selected semantic color token and provides a grid-based selector for choosing from a predefined set of tokens. Unlike SwiftUI’s native `ColorPicker`, this package binds to types conforming to `ColorConvertible`, enabling theme-aware, environment-adaptive colors across all Apple platforms.
 
 Package also contains:
 * `ColorConvertible` protocol, which allows you to define custom color types that can be used with the `SemanticColorPicker`.
@@ -21,7 +21,7 @@ Package also contains:
 Add next row in your `Package.swift` file `dependencies` section:
 
 ```swift
-.package(url: "https://github.com/borisovodov/SemanticColorPicker.git", from: "0.1.0")
+.package(url: "https://github.com/borisovodov/SemanticColorPicker.git", from: "1.0.0")
 ```
 
 Alternatively you can add package dependency in Xcode. For that open `.xcproject` file → click `PROJECT` → `Package Dependencies` → `+` → type `https://github.com/borisovodov/SemanticColorPicker` in the search field → click `Add Package`. See the Xcode [documentation](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) for details.
