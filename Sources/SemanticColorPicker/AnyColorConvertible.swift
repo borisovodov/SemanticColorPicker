@@ -8,7 +8,7 @@ import SwiftUI
 ///
 /// Example:
 /// ```swift
-/// enum GrayColor: String, Sendable, CaseIterable, Identifiable, ColorConvertible, Codable {
+/// enum GrayColor: String, Sendable, CaseIterable, Identifiable, ColorConvertible {
 ///     case gray
 ///     case gray75
 ///     case gray50
@@ -45,7 +45,24 @@ import SwiftUI
 /// 
 /// SemanticColorPicker("Color", data: allColors, selection: $selectedColor)
 /// ```
-public struct AnyColorConvertible: ColorConvertible, Identifiable, Hashable, Codable {
+///
+/// ## Persistence
+///
+/// `AnyColorConvertible` does **not** conform to `Codable` because it's fundamentally impossible
+/// to correctly decode a type-erased wrapper without knowing the original concrete type.
+///
+/// If you need to persist color selection, work with the concrete type directly:
+///
+/// ```swift
+/// // ✅ Good: Persist concrete type
+/// @AppStorage("themeColor") private var themeColorRaw: String = SemanticColor.blue.rawValue
+///
+/// private var themeColor: SemanticColor {
+///     get { SemanticColor(rawValue: themeColorRaw) ?? .blue }
+///     set { themeColorRaw = newValue.rawValue }
+/// }
+/// ```
+public struct AnyColorConvertible: ColorConvertible, Identifiable, Hashable {
     private let _color: Color
     private let _description: String
     private let _id: AnyHashable
@@ -110,39 +127,5 @@ public struct AnyColorConvertible: ColorConvertible, Identifiable, Hashable, Cod
     public func hash(into hasher: inout Hasher) {
         hasher.combine(_id)
         hasher.combine(_description)
-    }
-    
-    // MARK: - Codable
-    
-    private enum CodingKeys: String, CodingKey {
-        case description
-        case id
-        case rawValue
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self._description = try container.decode(String.self, forKey: .description)
-        self._rawValue = try container.decodeIfPresent(String.self, forKey: .rawValue)
-        
-        // Try to decode as SemanticColor if rawValue is present
-        if let rawValue = _rawValue,
-           let semanticColor = SemanticColor(rawValue: rawValue) {
-            self._color = semanticColor.color
-            self._id = AnyHashable(semanticColor.id)
-        } else {
-            throw DecodingError.dataCorruptedError(
-                forKey: .rawValue,
-                in: container,
-                debugDescription: "Unable to decode AnyColorConvertible: unsupported or missing rawValue."
-            )
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(_description, forKey: .description)
-        try container.encode("\(_id)", forKey: .id)
-        try container.encodeIfPresent(_rawValue, forKey: .rawValue)
     }
 }

@@ -82,33 +82,6 @@ import Testing
         #expect(set.count == 2)
     }
     
-    @Test func codable() throws {
-        let original = AnyColorConvertible(SemanticColor.purple)
-        
-        let encoder = JSONEncoder()
-        let data = try encoder.encode(original)
-        
-        let decoder = JSONDecoder()
-        let decoded = try decoder.decode(AnyColorConvertible.self, from: data)
-        
-        #expect(decoded.description == original.description)
-        #expect(decoded.rawValue == original.rawValue)
-    }
-    
-    @Test func codableWithCustomColor() throws {
-        let original = AnyColorConvertible(CustomColor.customBlue)
-        
-        let encoder = JSONEncoder()
-        let data = try encoder.encode(original)
-        
-        let decoder = JSONDecoder()
-        let decoded = try decoder.decode(AnyColorConvertible.self, from: data)
-        
-        #expect(decoded.description == original.description)
-        #expect(decoded.rawValue == original.rawValue)
-        #expect(decoded.color == .clear)
-    }
-    
     @Test func initWithExplicitId() {
         struct NonIdentifiableColor: ColorConvertible {
             let color: Color
