@@ -98,7 +98,7 @@ extension SemanticColor {
 }
 ```
 
-Create custom palette by combining standard colors with custom ones:
+Create a custom palette by combining standard colors with custom ones:
 
 ```swift
 let palette = SemanticColor.allCases + [
