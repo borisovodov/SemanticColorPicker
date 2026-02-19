@@ -15,16 +15,17 @@ let package: Package = Package(
     products: [
         .library(
             name: "SemanticColorPicker",
-            targets: ["SemanticColorPicker"]),
+            targets: ["SemanticColorPicker"]
+        ),
     ],
     targets: [
         .target(
             name: "SemanticColorPicker",
-            resources: [.process("Resources")],
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "SemanticColorPickerTests",
-            dependencies: ["SemanticColorPicker"],
+            dependencies: ["SemanticColorPicker"]
         ),
     ],
     swiftLanguageModes: [.v6]
