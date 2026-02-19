@@ -42,7 +42,7 @@ import Testing
         )
         
         // Create a custom palette
-        let customPalette = SemanticColor.palette(including: [customColor])
+        let customPalette = SemanticColor.allCases + [customColor]
         
         // Encode with palette
         let encoder = JSONEncoder()
@@ -78,19 +78,6 @@ import Testing
         #expect(throws: SemanticColor.DecodingError.self) {
             try decoder.decode(SemanticColor.self, from: data)
         }
-    }
-    
-    @Test func paletteIncludingMethod() async throws {
-        let custom1 = SemanticColor(id: "custom1", description: "Custom 1", color: .cyan)
-        let custom2 = SemanticColor(id: "custom2", description: "Custom 2", color: .mint)
-        
-        let palette = SemanticColor.palette(including: [custom1, custom2])
-        
-        // Verify palette contains all predefined colors plus custom ones
-        #expect(palette.count == SemanticColor.allCases.count + 2)
-        #expect(palette.contains(where: { $0.id == "custom1" }))
-        #expect(palette.contains(where: { $0.id == "custom2" }))
-        #expect(palette.contains(where: { $0.id == "red" }))
     }
 }
 
