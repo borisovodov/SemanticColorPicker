@@ -21,7 +21,7 @@ Package also contains:
 Add next row in your `Package.swift` file `dependencies` section:
 
 ```swift
-.package(url: "https://github.com/borisovodov/SemanticColorPicker.git", from: "1.0.0")
+.package(url: "https://github.com/borisovodov/SemanticColorPicker.git", from: "2.0.0")
 ```
 
 Alternatively you can add package dependency in Xcode. For that open `.xcproject` file → click `PROJECT` → `Package Dependencies` → `+` → type `https://github.com/borisovodov/SemanticColorPicker` in the search field → click `Add Package`. See the Xcode [documentation](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) for details.
