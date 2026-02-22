@@ -1,369 +1,434 @@
 import SwiftUI
 
-/// An example enumeration of semantic colors conforming to the `ColorConvertible` protocol.
+/// An extensible structure of semantic colors conforming to the `ColorConvertible` protocol.
 ///
-/// This enum provides a comprehensive set of standard colors and their opacity variants (75%, 50%, and 25%).
-/// Each case is identifiable, equatable, and convertible to a SwiftUI `Color`, furnishing a localized description for display.
-/// Use this enum as the data source for `SemanticColorPicker` to present a predefined palette of semantic colors.
-public enum SemanticColor: String, Sendable, CaseIterable, Identifiable, ColorConvertible, Codable {
-    case red
-    case orange
-    case yellow
-    case green
-    case mint
-    case teal
-    case cyan
-    case blue
-    case indigo
-    case purple
-    case pink
-    case brown
-    case red75
-    case orange75
-    case yellow75
-    case green75
-    case mint75
-    case teal75
-    case cyan75
-    case blue75
-    case indigo75
-    case purple75
-    case pink75
-    case brown75
-    case red50
-    case orange50
-    case yellow50
-    case green50
-    case mint50
-    case teal50
-    case cyan50
-    case blue50
-    case indigo50
-    case purple50
-    case pink50
-    case brown50
-    case red25
-    case orange25
-    case yellow25
-    case green25
-    case mint25
-    case teal25
-    case cyan25
-    case blue25
-    case indigo25
-    case purple25
-    case pink25
-    case brown25
-
+/// This struct provides a comprehensive set of standard colors and their opacity variants (75%, 50%, and 25%)
+/// as static properties. It is identifiable, equatable, hashable, and convertible to a SwiftUI `Color`, 
+/// furnishing a localized description for display.
+///
+/// Developers can create custom colors by initializing new instances with their own identifiers, descriptions, and colors.
+/// Use this struct as the data source for `SemanticColorPicker` to present a predefined palette of semantic colors
+/// or extend it with custom colors.
+///
+/// Example of creating custom colors and using them with `SemanticColorPicker`:
+/// ```swift
+/// extension SemanticColor {
+///     static let gray = SemanticColor(
+///         id: "gray",
+///         description: "Gray Color",
+///         color: .gray
+///     )
+/// }
+///
+/// struct ContentView: View {
+///     @State private var selectedColor: SemanticColor = .blue
+///     
+///     // Combine standard colors with custom ones
+///     let palette = SemanticColor.allCases + [
+///         SemanticColor.gray,
+///     ]
+///     
+///     var body: some View {
+///         SemanticColorPicker("Color", data: palette, selection: $selectedColor)
+///     }
+/// }
+/// ```
+public struct SemanticColor: Sendable, Identifiable, ColorConvertible, Equatable, Hashable {
     /// The unique identifier for this color, fulfilling `Identifiable`.
-    public var id: Self { self }
-
+    public let id: String
+    
     /// A localized text description for the color, suitable for accessibility and display.
-    public var description: String {
-        switch self {
-        case .red:
-            return String(localized: "redColorSelection", bundle: .module)
-        case .orange:
-            return String(localized: "orangeColorSelection", bundle: .module)
-        case .yellow:
-            return String(localized: "yellowColorSelection", bundle: .module)
-        case .green:
-            return String(localized: "greenColorSelection", bundle: .module)
-        case .mint:
-            return String(localized: "mintColorSelection", bundle: .module)
-        case .teal:
-            return String(localized: "tealColorSelection", bundle: .module)
-        case .cyan:
-            return String(localized: "cyanColorSelection", bundle: .module)
-        case .blue:
-            return String(localized: "blueColorSelection", bundle: .module)
-        case .indigo:
-            return String(localized: "indigoColorSelection", bundle: .module)
-        case .purple:
-            return String(localized: "purpleColorSelection", bundle: .module)
-        case .pink:
-            return String(localized: "pinkColorSelection", bundle: .module)
-        case .brown:
-            return String(localized: "brownColorSelection", bundle: .module)
-        case .red75:
-            return String(localized: "redColorSelection75", bundle: .module)
-        case .orange75:
-            return String(localized: "orangeColorSelection75", bundle: .module)
-        case .yellow75:
-            return String(localized: "yellowColorSelection75", bundle: .module)
-        case .green75:
-            return String(localized: "greenColorSelection75", bundle: .module)
-        case .mint75:
-            return String(localized: "mintColorSelection75", bundle: .module)
-        case .teal75:
-            return String(localized: "tealColorSelection75", bundle: .module)
-        case .cyan75:
-            return String(localized: "cyanColorSelection75", bundle: .module)
-        case .blue75:
-            return String(localized: "blueColorSelection75", bundle: .module)
-        case .indigo75:
-            return String(localized: "indigoColorSelection75", bundle: .module)
-        case .purple75:
-            return String(localized: "purpleColorSelection75", bundle: .module)
-        case .pink75:
-            return String(localized: "pinkColorSelection75", bundle: .module)
-        case .brown75:
-            return String(localized: "brownColorSelection75", bundle: .module)
-        case .red50:
-            return String(localized: "redColorSelection50", bundle: .module)
-        case .orange50:
-            return String(localized: "orangeColorSelection50", bundle: .module)
-        case .yellow50:
-            return String(localized: "yellowColorSelection50", bundle: .module)
-        case .green50:
-            return String(localized: "greenColorSelection50", bundle: .module)
-        case .mint50:
-            return String(localized: "mintColorSelection50", bundle: .module)
-        case .teal50:
-            return String(localized: "tealColorSelection50", bundle: .module)
-        case .cyan50:
-            return String(localized: "cyanColorSelection50", bundle: .module)
-        case .blue50:
-            return String(localized: "blueColorSelection50", bundle: .module)
-        case .indigo50:
-            return String(localized: "indigoColorSelection50", bundle: .module)
-        case .purple50:
-            return String(localized: "purpleColorSelection50", bundle: .module)
-        case .pink50:
-            return String(localized: "pinkColorSelection50", bundle: .module)
-        case .brown50:
-            return String(localized: "brownColorSelection50", bundle: .module)
-        case .red25:
-            return String(localized: "redColorSelection25", bundle: .module)
-        case .orange25:
-            return String(localized: "orangeColorSelection25", bundle: .module)
-        case .yellow25:
-            return String(localized: "yellowColorSelection25", bundle: .module)
-        case .green25:
-            return String(localized: "greenColorSelection25", bundle: .module)
-        case .mint25:
-            return String(localized: "mintColorSelection25", bundle: .module)
-        case .teal25:
-            return String(localized: "tealColorSelection25", bundle: .module)
-        case .cyan25:
-            return String(localized: "cyanColorSelection25", bundle: .module)
-        case .blue25:
-            return String(localized: "blueColorSelection25", bundle: .module)
-        case .indigo25:
-            return String(localized: "indigoColorSelection25", bundle: .module)
-        case .purple25:
-            return String(localized: "purpleColorSelection25", bundle: .module)
-        case .pink25:
-            return String(localized: "pinkColorSelection25", bundle: .module)
-        case .brown25:
-            return String(localized: "brownColorSelection25", bundle: .module)
-        }
-    }
-
-    /// Returns a random `SemanticColor` value from the primary palette.
-    public static var random: Self {
-        let randomInt: Int = Int.random(in: 0..<48)
-        switch randomInt {
-        case 0:
-            return Self.blue
-        case 1:
-            return Self.brown
-        case 2:
-            return Self.cyan
-        case 3:
-            return Self.green
-        case 4:
-            return Self.indigo
-        case 5:
-            return Self.mint
-        case 6:
-            return Self.orange
-        case 7:
-            return Self.pink
-        case 8:
-            return Self.purple
-        case 9:
-            return Self.red
-        case 10:
-            return Self.teal
-        case 11:
-            return Self.yellow
-        case 12:
-            return Self.blue75
-        case 13:
-            return Self.brown75
-        case 14:
-            return Self.cyan75
-        case 15:
-            return Self.green75
-        case 16:
-            return Self.indigo75
-        case 17:
-            return Self.mint75
-        case 18:
-            return Self.orange75
-        case 19:
-            return Self.pink75
-        case 20:
-            return Self.purple75
-        case 21:
-            return Self.red75
-        case 22:
-            return Self.teal75
-        case 23:
-            return Self.yellow75
-        case 24:
-            return Self.blue50
-        case 25:
-            return Self.brown50
-        case 26:
-            return Self.cyan50
-        case 27:
-            return Self.green50
-        case 28:
-            return Self.indigo50
-        case 29:
-            return Self.mint50
-        case 30:
-            return Self.orange50
-        case 31:
-            return Self.pink50
-        case 32:
-            return Self.purple50
-        case 33:
-            return Self.red50
-        case 34:
-            return Self.teal50
-        case 35:
-            return Self.yellow50
-        case 36:
-            return Self.blue25
-        case 37:
-            return Self.brown25
-        case 38:
-            return Self.cyan25
-        case 39:
-            return Self.green25
-        case 40:
-            return Self.indigo25
-        case 41:
-            return Self.mint25
-        case 42:
-            return Self.orange25
-        case 43:
-            return Self.pink25
-        case 44:
-            return Self.purple25
-        case 45:
-            return Self.red25
-        case 46:
-            return Self.teal25
-        case 47:
-            return Self.yellow25
-        default:
-            return Self.yellow
-        }
-    }
-
+    public let description: String
+    
     /// A SwiftUI `Color` representation of this semantic color.
-    public var color: Color {
-        switch self {
-        case .red:
-            return Color.red
-        case .orange:
-            return Color.orange
-        case .yellow:
-            return Color.yellow
-        case .green:
-            return Color.green
-        case .mint:
-            return Color.mint
-        case .teal:
-            return Color.teal
-        case .cyan:
-            return Color.cyan
-        case .blue:
-            return Color.blue
-        case .indigo:
-            return Color.indigo
-        case .purple:
-            return Color.purple
-        case .pink:
-            return Color.pink
-        case .brown:
-            return Color.brown
-        case .red75:
-            return Color.red.opacity(0.75)
-        case .orange75:
-            return Color.orange.opacity(0.75)
-        case .yellow75:
-            return Color.yellow.opacity(0.75)
-        case .green75:
-            return Color.green.opacity(0.75)
-        case .mint75:
-            return Color.mint.opacity(0.75)
-        case .teal75:
-            return Color.teal.opacity(0.75)
-        case .cyan75:
-            return Color.cyan.opacity(0.75)
-        case .blue75:
-            return Color.blue.opacity(0.75)
-        case .indigo75:
-            return Color.indigo.opacity(0.75)
-        case .purple75:
-            return Color.purple.opacity(0.75)
-        case .pink75:
-            return Color.pink.opacity(0.75)
-        case .brown75:
-            return Color.brown.opacity(0.75)
-        case .red50:
-            return Color.red.opacity(0.5)
-        case .orange50:
-            return Color.orange.opacity(0.5)
-        case .yellow50:
-            return Color.yellow.opacity(0.5)
-        case .green50:
-            return Color.green.opacity(0.5)
-        case .mint50:
-            return Color.mint.opacity(0.5)
-        case .teal50:
-            return Color.teal.opacity(0.5)
-        case .cyan50:
-            return Color.cyan.opacity(0.5)
-        case .blue50:
-            return Color.blue.opacity(0.5)
-        case .indigo50:
-            return Color.indigo.opacity(0.5)
-        case .purple50:
-            return Color.purple.opacity(0.5)
-        case .pink50:
-            return Color.pink.opacity(0.5)
-        case .brown50:
-            return Color.brown.opacity(0.5)
-        case .red25:
-            return Color.red.opacity(0.25)
-        case .orange25:
-            return Color.orange.opacity(0.25)
-        case .yellow25:
-            return Color.yellow.opacity(0.25)
-        case .green25:
-            return Color.green.opacity(0.25)
-        case .mint25:
-            return Color.mint.opacity(0.25)
-        case .teal25:
-            return Color.teal.opacity(0.25)
-        case .cyan25:
-            return Color.cyan.opacity(0.25)
-        case .blue25:
-            return Color.blue.opacity(0.25)
-        case .indigo25:
-            return Color.indigo.opacity(0.25)
-        case .purple25:
-            return Color.purple.opacity(0.25)
-        case .pink25:
-            return Color.pink.opacity(0.25)
-        case .brown25:
-            return Color.brown.opacity(0.25)
+    public let color: Color
+    
+    /// Creates a new semantic color with the specified identifier, description, and color.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the color.
+    ///   - description: A localized text description for accessibility and display.
+    ///   - color: The SwiftUI `Color` representation.
+    public init(id: String, description: String, color: Color) {
+        self.id = id
+        self.description = description
+        self.color = color
+    }
+    
+    // MARK: - Predefined Colors
+    
+    public static let red = SemanticColor(
+        id: "red",
+        description: String(localized: "redColorSelection", bundle: .module),
+        color: .red
+    )
+    
+    public static let orange = SemanticColor(
+        id: "orange",
+        description: String(localized: "orangeColorSelection", bundle: .module),
+        color: .orange
+    )
+    
+    public static let yellow = SemanticColor(
+        id: "yellow",
+        description: String(localized: "yellowColorSelection", bundle: .module),
+        color: .yellow
+    )
+    
+    public static let green = SemanticColor(
+        id: "green",
+        description: String(localized: "greenColorSelection", bundle: .module),
+        color: .green
+    )
+    
+    public static let mint = SemanticColor(
+        id: "mint",
+        description: String(localized: "mintColorSelection", bundle: .module),
+        color: .mint
+    )
+    
+    public static let teal = SemanticColor(
+        id: "teal",
+        description: String(localized: "tealColorSelection", bundle: .module),
+        color: .teal
+    )
+    
+    public static let cyan = SemanticColor(
+        id: "cyan",
+        description: String(localized: "cyanColorSelection", bundle: .module),
+        color: .cyan
+    )
+    
+    public static let blue = SemanticColor(
+        id: "blue",
+        description: String(localized: "blueColorSelection", bundle: .module),
+        color: .blue
+    )
+    
+    public static let indigo = SemanticColor(
+        id: "indigo",
+        description: String(localized: "indigoColorSelection", bundle: .module),
+        color: .indigo
+    )
+    
+    public static let purple = SemanticColor(
+        id: "purple",
+        description: String(localized: "purpleColorSelection", bundle: .module),
+        color: .purple
+    )
+    
+    public static let pink = SemanticColor(
+        id: "pink",
+        description: String(localized: "pinkColorSelection", bundle: .module),
+        color: .pink
+    )
+    
+    public static let brown = SemanticColor(
+        id: "brown",
+        description: String(localized: "brownColorSelection", bundle: .module),
+        color: .brown
+    )
+    
+    // MARK: - 75% Opacity Variants
+    
+    public static let red75 = SemanticColor(
+        id: "red75",
+        description: String(localized: "redColorSelection75", bundle: .module),
+        color: .red.opacity(0.75)
+    )
+    
+    public static let orange75 = SemanticColor(
+        id: "orange75",
+        description: String(localized: "orangeColorSelection75", bundle: .module),
+        color: .orange.opacity(0.75)
+    )
+    
+    public static let yellow75 = SemanticColor(
+        id: "yellow75",
+        description: String(localized: "yellowColorSelection75", bundle: .module),
+        color: .yellow.opacity(0.75)
+    )
+    
+    public static let green75 = SemanticColor(
+        id: "green75",
+        description: String(localized: "greenColorSelection75", bundle: .module),
+        color: .green.opacity(0.75)
+    )
+    
+    public static let mint75 = SemanticColor(
+        id: "mint75",
+        description: String(localized: "mintColorSelection75", bundle: .module),
+        color: .mint.opacity(0.75)
+    )
+    
+    public static let teal75 = SemanticColor(
+        id: "teal75",
+        description: String(localized: "tealColorSelection75", bundle: .module),
+        color: .teal.opacity(0.75)
+    )
+    
+    public static let cyan75 = SemanticColor(
+        id: "cyan75",
+        description: String(localized: "cyanColorSelection75", bundle: .module),
+        color: .cyan.opacity(0.75)
+    )
+    
+    public static let blue75 = SemanticColor(
+        id: "blue75",
+        description: String(localized: "blueColorSelection75", bundle: .module),
+        color: .blue.opacity(0.75)
+    )
+    
+    public static let indigo75 = SemanticColor(
+        id: "indigo75",
+        description: String(localized: "indigoColorSelection75", bundle: .module),
+        color: .indigo.opacity(0.75)
+    )
+    
+    public static let purple75 = SemanticColor(
+        id: "purple75",
+        description: String(localized: "purpleColorSelection75", bundle: .module),
+        color: .purple.opacity(0.75)
+    )
+    
+    public static let pink75 = SemanticColor(
+        id: "pink75",
+        description: String(localized: "pinkColorSelection75", bundle: .module),
+        color: .pink.opacity(0.75)
+    )
+    
+    public static let brown75 = SemanticColor(
+        id: "brown75",
+        description: String(localized: "brownColorSelection75", bundle: .module),
+        color: .brown.opacity(0.75)
+    )
+    
+    // MARK: - 50% Opacity Variants
+    
+    public static let red50 = SemanticColor(
+        id: "red50",
+        description: String(localized: "redColorSelection50", bundle: .module),
+        color: .red.opacity(0.5)
+    )
+    
+    public static let orange50 = SemanticColor(
+        id: "orange50",
+        description: String(localized: "orangeColorSelection50", bundle: .module),
+        color: .orange.opacity(0.5)
+    )
+    
+    public static let yellow50 = SemanticColor(
+        id: "yellow50",
+        description: String(localized: "yellowColorSelection50", bundle: .module),
+        color: .yellow.opacity(0.5)
+    )
+    
+    public static let green50 = SemanticColor(
+        id: "green50",
+        description: String(localized: "greenColorSelection50", bundle: .module),
+        color: .green.opacity(0.5)
+    )
+    
+    public static let mint50 = SemanticColor(
+        id: "mint50",
+        description: String(localized: "mintColorSelection50", bundle: .module),
+        color: .mint.opacity(0.5)
+    )
+    
+    public static let teal50 = SemanticColor(
+        id: "teal50",
+        description: String(localized: "tealColorSelection50", bundle: .module),
+        color: .teal.opacity(0.5)
+    )
+    
+    public static let cyan50 = SemanticColor(
+        id: "cyan50",
+        description: String(localized: "cyanColorSelection50", bundle: .module),
+        color: .cyan.opacity(0.5)
+    )
+    
+    public static let blue50 = SemanticColor(
+        id: "blue50",
+        description: String(localized: "blueColorSelection50", bundle: .module),
+        color: .blue.opacity(0.5)
+    )
+    
+    public static let indigo50 = SemanticColor(
+        id: "indigo50",
+        description: String(localized: "indigoColorSelection50", bundle: .module),
+        color: .indigo.opacity(0.5)
+    )
+    
+    public static let purple50 = SemanticColor(
+        id: "purple50",
+        description: String(localized: "purpleColorSelection50", bundle: .module),
+        color: .purple.opacity(0.5)
+    )
+    
+    public static let pink50 = SemanticColor(
+        id: "pink50",
+        description: String(localized: "pinkColorSelection50", bundle: .module),
+        color: .pink.opacity(0.5)
+    )
+    
+    public static let brown50 = SemanticColor(
+        id: "brown50",
+        description: String(localized: "brownColorSelection50", bundle: .module),
+        color: .brown.opacity(0.5)
+    )
+    
+    // MARK: - 25% Opacity Variants
+    
+    public static let red25 = SemanticColor(
+        id: "red25",
+        description: String(localized: "redColorSelection25", bundle: .module),
+        color: .red.opacity(0.25)
+    )
+    
+    public static let orange25 = SemanticColor(
+        id: "orange25",
+        description: String(localized: "orangeColorSelection25", bundle: .module),
+        color: .orange.opacity(0.25)
+    )
+    
+    public static let yellow25 = SemanticColor(
+        id: "yellow25",
+        description: String(localized: "yellowColorSelection25", bundle: .module),
+        color: .yellow.opacity(0.25)
+    )
+    
+    public static let green25 = SemanticColor(
+        id: "green25",
+        description: String(localized: "greenColorSelection25", bundle: .module),
+        color: .green.opacity(0.25)
+    )
+    
+    public static let mint25 = SemanticColor(
+        id: "mint25",
+        description: String(localized: "mintColorSelection25", bundle: .module),
+        color: .mint.opacity(0.25)
+    )
+    
+    public static let teal25 = SemanticColor(
+        id: "teal25",
+        description: String(localized: "tealColorSelection25", bundle: .module),
+        color: .teal.opacity(0.25)
+    )
+    
+    public static let cyan25 = SemanticColor(
+        id: "cyan25",
+        description: String(localized: "cyanColorSelection25", bundle: .module),
+        color: .cyan.opacity(0.25)
+    )
+    
+    public static let blue25 = SemanticColor(
+        id: "blue25",
+        description: String(localized: "blueColorSelection25", bundle: .module),
+        color: .blue.opacity(0.25)
+    )
+    
+    public static let indigo25 = SemanticColor(
+        id: "indigo25",
+        description: String(localized: "indigoColorSelection25", bundle: .module),
+        color: .indigo.opacity(0.25)
+    )
+    
+    public static let purple25 = SemanticColor(
+        id: "purple25",
+        description: String(localized: "purpleColorSelection25", bundle: .module),
+        color: .purple.opacity(0.25)
+    )
+    
+    public static let pink25 = SemanticColor(
+        id: "pink25",
+        description: String(localized: "pinkColorSelection25", bundle: .module),
+        color: .pink.opacity(0.25)
+    )
+    
+    public static let brown25 = SemanticColor(
+        id: "brown25",
+        description: String(localized: "brownColorSelection25", bundle: .module),
+        color: .brown.opacity(0.25)
+    )
+    
+    // MARK: - Collection
+    
+    /// An array containing all predefined semantic colors.
+    public static let allCases: [SemanticColor] = [
+        .red, .orange, .yellow, .green, .mint, .teal, .cyan, .blue, .indigo, .purple, .pink, .brown,
+        .red75, .orange75, .yellow75, .green75, .mint75, .teal75, .cyan75, .blue75, .indigo75, .purple75, .pink75, .brown75,
+        .red50, .orange50, .yellow50, .green50, .mint50, .teal50, .cyan50, .blue50, .indigo50, .purple50, .pink50, .brown50,
+        .red25, .orange25, .yellow25, .green25, .mint25, .teal25, .cyan25, .blue25, .indigo25, .purple25, .pink25, .brown25
+    ]
+    
+    /// Returns a random `SemanticColor` value from the predefined palette.
+    public static var random: SemanticColor {
+        Self.allCases.randomElement() ?? .yellow
+    }
+    
+    // MARK: - Palette Support
+    
+    /// A coding user info key for providing a custom color palette during encoding and decoding.
+    ///
+    /// When encoding or decoding `SemanticColor` instances, you can provide a custom palette
+    /// that includes additional colors beyond the predefined ones. This allows custom colors
+    /// to be properly decoded instead of falling back to a default gray color.
+    ///
+    /// Example:
+    /// ```swift
+    /// let customPalette = SemanticColor.allCases + [.customColor1, .customColor2]
+    /// let encoder = JSONEncoder()
+    /// encoder.userInfo[SemanticColor.paletteKey] = customPalette
+    ///
+    /// let decoder = JSONDecoder()
+    /// decoder.userInfo[SemanticColor.paletteKey] = customPalette
+    /// ```
+    public static let paletteKey: CodingUserInfoKey = {
+        guard let key = CodingUserInfoKey(rawValue: "com.semanticcolorpicker.palette") else {
+            fatalError("Failed to create CodingUserInfoKey with the specified raw value")
         }
+        return key
+    }()
+}
+
+// MARK: - Codable
+
+extension SemanticColor: Codable {
+    /// Errors that can occur during `SemanticColor` decoding.
+    public enum DecodingError: Error, LocalizedError {
+        case colorNotFound(id: String)
+        
+        public var errorDescription: String? {
+            switch self {
+            case .colorNotFound(let id):
+                return "SemanticColor with id '\(id)' not found in the provided palette or predefined colors. Ensure the color is included in the palette passed via encoder/decoder userInfo."
+            }
+        }
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let id = try container.decode(String.self)
+        
+        // First, try to find in the custom palette provided via userInfo
+        if let palette = decoder.userInfo[Self.paletteKey] as? [SemanticColor],
+           let found = palette.first(where: { $0.id == id }) {
+            self = found
+            return
+        }
+        
+        // Fall back to predefined colors
+        if let predefined = Self.allCases.first(where: { $0.id == id }) {
+            self = predefined
+            return
+        }
+        
+        // If not found anywhere, throw an error
+        throw DecodingError.colorNotFound(id: id)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(id)
     }
 }
