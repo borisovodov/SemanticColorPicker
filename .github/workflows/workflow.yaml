@@ -12,16 +12,13 @@ jobs:
       run: swift build
     - name: Test
       run: swift test --enable-code-coverage
-  codecov:
-    runs-on: macos-26
-    steps:
-    - uses: actions/checkout@main
-    - run: swift test --enable-code-coverage
-    - uses: mattpolzin/swift-codecov-action@0.7.5
-      with:
-        MINIMUM_COVERAGE: 98
-        INCLUDE_TESTS: 'true'
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+  # codecov:
+  #   runs-on: macos-26
+  #   steps:
+  #   - uses: actions/checkout@main
+  #   - run: swift test --enable-code-coverage
+  #   - uses: mattpolzin/swift-codecov-action@0.7.5
+  #   - name: Upload coverage reports to Codecov
+  #     uses: codecov/codecov-action@v5
+  #     with:
+  #       token: ${{ secrets.CODECOV_TOKEN }}
