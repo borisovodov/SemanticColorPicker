@@ -13,12 +13,10 @@ jobs:
     - name: Test
       run: swift test --enable-code-coverage
   codecov:
-    container:
-      image: swift:6.0
-    runs-on: ubuntu-latest
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@main
-    - run: swift test --enable-test-discovery --enable-code-coverage
+    - run: swift test --enable-code-coverage
     - uses: mattpolzin/swift-codecov-action@0.7.5
       with:
         MINIMUM_COVERAGE: 98
